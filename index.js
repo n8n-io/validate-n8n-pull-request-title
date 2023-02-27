@@ -21,7 +21,7 @@ async function run() {
     });
 
     // When user updates a PR title, context PR data is outdated,
-    // so fetch the latest PR data via GitHub REST API.
+    // so fetch the latest PR data via GitHub REST API. Changes for testing
     const { data: pullRequest } = await client.rest.pulls.get({
       owner,
       repo,
