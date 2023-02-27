@@ -9723,7 +9723,7 @@ const { PARSER_CONTENT } = __nccwpck_require__(1304);
 async function getAllNodesDisplayNames() {
   try {
     await exec(
-      `npm i typescript fast-glob; npm i -g ts-node; touch parser.ts; echo "${PARSER_CONTENT}" > parser.ts`,
+      `npm i typescript@4.8.4 fast-glob; npm i -g ts-node@10.9.1 ; touch parser.ts; echo "${PARSER_CONTENT}" > parser.ts`,
     );
     const result = await exec("ts-node parser.ts");
 
