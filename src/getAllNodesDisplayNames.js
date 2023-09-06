@@ -9,7 +9,7 @@ const { PARSER_CONTENT } = require("./parserContent");
 async function getAllNodesDisplayNames() {
   try {
     await exec(
-      `npm i typescript@4.9 @types/node@16.18 fast-glob; npm i -g ts-node@10.9 ; touch parser.ts; echo "${PARSER_CONTENT}" > parser.ts`,
+      `npm i typescript@5.2 @types/node@18.16 fast-glob; npm i -g ts-node@10.9 ; touch parser.ts; echo "${PARSER_CONTENT}" > parser.ts`,
     );
     const result = await exec("ts-node parser.ts");
 
