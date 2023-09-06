@@ -1,0 +1,7 @@
+#!/usr/bin/env node
+
+const { getAllNodesDisplayNames } = require("../src/getAllNodesDisplayNames");
+
+getAllNodesDisplayNames().then((result) =>
+  console.log(JSON.stringify(result, null, 2)),
+);
