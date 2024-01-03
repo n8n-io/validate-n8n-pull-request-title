@@ -4,11 +4,14 @@ import glob from "fast-glob";
 import ts from "typescript";
 
 const NODES_DIR = path.resolve("packages", "nodes-base", "nodes");
+const LANGCHAIN_NODES_DIR = path.resolve("packages", "@n8n", "nodes-langchain", "nodes");
 
 async function getDisplayNames() {
   const [nodeFilepaths, versionDescriptionFilepaths] = await Promise.all([
     glob(path.resolve(NODES_DIR, "**", "*.node.ts")),
     glob(path.resolve(NODES_DIR, "**", "versionDescription.ts")),
+    glob(path.resolve(LANGCHAIN_NODES_DIR, "**", "*.node.ts")),
+    glob(path.resolve(LANGCHAIN_NODES_DIR, "**", "versionDescription.ts")),
   ]);
 
   const nodeFiles = nodeFilepaths.reduce<string[]>((acc, cur) => {
