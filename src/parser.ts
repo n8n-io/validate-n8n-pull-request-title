@@ -7,14 +7,14 @@ const NODES_DIR = path.resolve("packages", "nodes-base", "nodes");
 const LANGCHAIN_NODES_DIR = path.resolve("packages", "@n8n", "nodes-langchain", "nodes");
 
 async function getDisplayNames() {
-  const [nodeFilepaths, versionDescriptionFilepaths] = await Promise.all([
+  const [nodeFilepaths, versionDescriptionFilepaths, lcNodeFilepaths, lcVersionDescriptionFilepaths] = await Promise.all([
     glob(path.resolve(NODES_DIR, "**", "*.node.ts")),
     glob(path.resolve(NODES_DIR, "**", "versionDescription.ts")),
     glob(path.resolve(LANGCHAIN_NODES_DIR, "**", "*.node.ts")),
     glob(path.resolve(LANGCHAIN_NODES_DIR, "**", "versionDescription.ts")),
   ]);
 
-  const nodeFiles = nodeFilepaths.reduce<string[]>((acc, cur) => {
+  const nodeFiles = [...nodeFilepaths, ...lcNodeFilepaths].reduce<string[]>((acc, cur) => {
     let displayName = fromMajorityNodeFile(cur);
 
     if (!displayName) {
@@ -24,7 +24,7 @@ async function getDisplayNames() {
     return displayName ? [...acc, displayName] : acc;
   }, []);
 
-  const versionDescriptionFiles = versionDescriptionFilepaths.reduce<string[]>(
+  const versionDescriptionFiles = [...versionDescriptionFilepaths, ...lcVersionDescriptionFilepaths].reduce<string[]>(
     (acc, cur) => {
       const displayName = fromVersionDescription(cur);
 
