@@ -10,7 +10,7 @@ async function getAllNodesDisplayNames() {
     await exec(
       "npm i typescript@5.2 @types/node@18.16 fast-glob; npm i -g ts-node@10.9",
     );
-    await exec(`cp "${__dirname}/parser.ts" parser.ts`);
+    await exec(`cp "${__dirname}/../src/parser.ts" parser.ts`);
     const result = await exec("ts-node parser.ts");
     return JSON.parse(result.stdout);
   } catch (error) {
