@@ -2,7 +2,7 @@ name: validate-n8n-pull-request-title
 author: Iván Ovejero <ivov.src@gmail.com>
 description: Ensure a PR title matches n8n's version of the Conventional Commits spec
 runs:
-  using: "node16"
+  using: "node20"
   main: "dist/index.js"
 outputs:
   validation_issues:
