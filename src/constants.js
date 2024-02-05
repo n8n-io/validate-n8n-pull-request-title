@@ -21,7 +21,7 @@ const ERRORS = {
     "PR title does not match PR title convention: type: subject or type(scope): subject",
     `For \`type\`, use \`type:\` or \`type(scope):\`, where \`type\` is one of ${displayTypes}`,
     `If present, \`scope\` must be one of ${displayScopes} or \`<displayName> Node\``,
-    "For the subject, mind the whitespace, start with lowercase and omit final period",
+    "For the subject, mind the whitespace, start with uppercase and omit final period",
   ].join(". "),
   TICKET_NUMBER_PRESENT: "PR title must not contain a ticket number",
   TYPE_NOT_FOUND: `Failed to find \`type\` in PR title. Expected one of ${displayTypes}`,
