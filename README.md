@@ -85,19 +85,21 @@ jobs:
 ## Release
 
 ```sh
-# 1. update build
+# 1. update build - THIS NEEDS TO HAPPEN IN THE PR
 npm run build
 git add dist
 git commit -m "Update built action"
 
-# 2. create new tag
+# 2. Merge PR
+
+# 3. create new tag
 git tag v1.2.0
 git push origin v1.2.0
 
-# 3. create release with new tag
-# https://github.com/ivov/validate-n8n-pull-request-title/releases/new
+# 4. create release with new tag
+# https://github.com/n8n-io/validate-n8n-pull-request-title/releases/new
 
-# 4. move forward major to latest
+# 5. move forward major to latest
 git tag -fa v1 -m "Move forward v1 tag"
 git push origin v1 --force
 ```
