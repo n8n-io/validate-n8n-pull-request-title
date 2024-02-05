@@ -105,7 +105,7 @@ describe("subject", () => {
     const issues = await validate("feat(core): implement feature");
     expect(issues)
       .toHaveLength(1)
-      .toContain(ERRORS.UPPERCASE_INITIAL_IN_SUBJECT);
+      .toContain(ERRORS.LOWERCASE_INITIAL_IN_SUBJECT);
   });
 
   test("Validation should fail for final period in subject", async () => {

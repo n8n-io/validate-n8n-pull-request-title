@@ -50,7 +50,7 @@ async function validatePrTitle(title) {
   const { subject } = match.groups;
 
   if (startsWithLowerCase(subject)) {
-    issues.push(ERRORS.UPPERCASE_INITIAL_IN_SUBJECT);
+    issues.push(ERRORS.LOWERCASE_INITIAL_IN_SUBJECT);
   }
 
   if (endsWithPeriod(subject)) {
