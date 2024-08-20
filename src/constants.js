@@ -9,7 +9,7 @@ const TYPES = [
   "ci",
 ];
 
-const SCOPES = ["API", "core", "editor"];
+const SCOPES = ["API", "core", "editor", "benchmark"];
 
 const displayTypes = TYPES.map((type) => `\`${type}\``).join(", ");
 const displayScopes = SCOPES.map((type) => `\`${type}\``).join(", ");
