@@ -1,5 +1,5 @@
 const { validatePrTitle: validate } = require("./validatePrTitle");
-const { ERRORS, NO_CHANGELOG } = require("./constants");
+const { ERRORS, NO_CHANGELOG, SCOPES } = require("./constants");
 const displayNamesModule = require("./getAllNodesDisplayNames");
 const { TYPES } = require("./constants");
 const {
@@ -98,6 +98,14 @@ describe("scope", () => {
       .toHaveLength(1)
       .toContain(ERRORS.INVALID_SCOPE + ". Did you mean `Gmail Trigger Node`?");
   });
+
+  test.each(SCOPES)(
+    'Validation should pass for valid scope "%s"',
+    async (scope) => {
+      const issues = await validate(`feat(${scope}): Implement feature`);
+      expect(issues).toHaveLength(0);
+    },
+  );
 });
 
 describe("subject", () => {
