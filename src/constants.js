@@ -7,6 +7,7 @@ const TYPES = [
   "refactor",
   "build",
   "ci",
+  "chore",
 ];
 
 const SCOPES = ["API", "core", "editor", "benchmark"];
