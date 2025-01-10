@@ -16,6 +16,8 @@ async function validatePrTitle(title) {
 
   if (containsTicketNumber(title)) return [ERRORS.TICKET_NUMBER_PRESENT];
 
+  if (containsPrNumber(title)) return [ERRORS.PR_NUMBER_PRESENT];
+
   const issues = [];
 
   // type validation
@@ -53,6 +55,10 @@ async function validatePrTitle(title) {
     issues.push(ERRORS.LOWERCASE_INITIAL_IN_SUBJECT);
   }
 
+  if (subject.startsWith("(")) {
+    issues.push(ERRORS.INITIAL_PAREN_IN_SUBJECT);
+  }
+
   if (endsWithPeriod(subject)) {
     issues.push(ERRORS.FINAL_PERIOD_IN_SUBJECT);
   }
@@ -71,6 +77,8 @@ async function validatePrTitle(title) {
 /**
  * Helpers
  */
+
+const containsPrNumber = (str) => REGEXES.PR_NUMBER.test(str);
 
 const isInvalidType = (str) => !TYPES.includes(str);
 

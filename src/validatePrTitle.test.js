@@ -34,6 +34,17 @@ describe("schema", () => {
       expect(issues).toHaveLength(1).toContain(ERRORS.TICKET_NUMBER_PRESENT);
     });
   });
+
+  test("Validation should fail for PR number in schema", () => {
+    [
+      "feat(Mattermost node): Add new resource #12345",
+      "feat(Mattermost node): Add new #123445 resource",
+      "feat(Mattermost node): #12345 Add new resource",
+    ].forEach(async (title) => {
+      const issues = await validate(title);
+      expect(issues).toHaveLength(1).toContain(ERRORS.PR_NUMBER_PRESENT);
+    });
+  });
 });
 
 describe("type", () => {
@@ -152,12 +163,22 @@ describe("subject", () => {
     [
       "docs(Oura Node): Fix (no-changelog) typo",
       "docs(Oura Node): Fix typo(no-changelog) ",
-      "docs(Oura Node): (no-changelog) Fix typo",
+      "docs(Oura Node): Fix (no-changelog) typo",
     ].forEach(async (title) => {
       const issues = await validate(title);
       expect(issues)
         .toHaveLength(1)
         .toContain(ERRORS.SKIP_CHANGELOG_NOT_IN_FINAL_POSITION);
+    });
+  });
+
+  test("Validation should fail for initial paren in subject", () => {
+    [
+      "feat(Mattermost Node): (Add new resource",
+      "feat(Mattermost Node): (Add new resource)",
+    ].forEach(async (title) => {
+      const issues = await validate(title);
+      expect(issues).toHaveLength(1).toContain(ERRORS.INITIAL_PAREN_IN_SUBJECT);
     });
   });
 });

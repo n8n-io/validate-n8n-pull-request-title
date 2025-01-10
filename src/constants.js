@@ -34,11 +34,14 @@ const ERRORS = {
   SKIP_CHANGELOG_NOT_IN_FINAL_POSITION: `\`${NO_CHANGELOG}\` must be located at the end of the subject`,
   MISSING_WHITESPACE_AFTER_COMMA:
     "Missing whitespace after comma to separate multiple scopes",
+  INITIAL_PAREN_IN_SUBJECT: "Subject must not start with parens",
+  PR_NUMBER_PRESENT: "Title must not include pull request number",
 };
 
 const REGEXES = {
   CONVENTIONAL_SCHEMA: /(?<type>\w+)(\((?<scope>.*)\))?!?: (?<subject>.*)/,
   TICKET: /n8n-\d{3,5}/i,
+  PR_NUMBER: /#\d{5,7}/,
 };
 
 module.exports = {
