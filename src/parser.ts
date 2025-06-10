@@ -9,8 +9,10 @@ const LANGCHAIN_NODES_DIR = path.resolve("packages", "@n8n", "nodes-langchain", 
 async function getDisplayNames() {
   const [nodeFilepaths, versionDescriptionFilepaths, lcNodeFilepaths, lcVersionDescriptionFilepaths] = await Promise.all([
     glob(path.resolve(NODES_DIR, "**", "*.node.ts")),
+    glob(path.resolve(NODES_DIR, "**", "*.node.ee.ts")),
     glob(path.resolve(NODES_DIR, "**", "versionDescription.ts")),
     glob(path.resolve(LANGCHAIN_NODES_DIR, "**", "*.node.ts")),
+    glob(path.resolve(LANGCHAIN_NODES_DIR, "**", "*.node.ee.ts")),
     glob(path.resolve(LANGCHAIN_NODES_DIR, "**", "versionDescription.ts")),
   ]);
 
