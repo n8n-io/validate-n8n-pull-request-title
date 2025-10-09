@@ -10,7 +10,7 @@ const TYPES = [
   "chore",
 ];
 
-const SCOPES = ["API", "core", "editor", "benchmark"];
+const SCOPES = ["API", "core", "editor", "benchmark", "ai-builder"];
 
 const displayTypes = TYPES.map((type) => `\`${type}\``).join(", ");
 const displayScopes = SCOPES.map((type) => `\`${type}\``).join(", ");
