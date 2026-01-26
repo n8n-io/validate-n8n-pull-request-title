@@ -12,6 +12,19 @@ const TYPES = [
 
 const SCOPES = ["API", "core", "editor", "benchmark", "ai-builder"];
 
+const BLOCKED_KEYWORDS = [
+  "security",
+  "vulnerability",
+  "CVE",
+  "exploit",
+  "injection",
+  "XSS",
+  "SSRF",
+  "RCE",
+  "bypass",
+  "escalation",
+];
+
 const displayTypes = TYPES.map((type) => `\`${type}\``).join(", ");
 const displayScopes = SCOPES.map((type) => `\`${type}\``).join(", ");
 
@@ -24,6 +37,8 @@ const ERRORS = {
     `If present, \`scope\` must be one of ${displayScopes} or \`<displayName> Node\``,
     "For the subject, mind the whitespace, start with uppercase and omit final period",
   ].join(". "),
+  BLOCKED_KEYWORD_PRESENT:
+    "PR title contains security-related keywords. Reword it and resubmit",
   TICKET_NUMBER_PRESENT: "PR title must not contain a ticket number",
   TYPE_NOT_FOUND: `Failed to find \`type\` in PR title. Expected one of ${displayTypes}`,
   INVALID_TYPE: `Unknown \`type\` in PR title. Expected one of ${displayTypes}`,
@@ -47,6 +62,7 @@ const REGEXES = {
 module.exports = {
   TYPES,
   SCOPES,
+  BLOCKED_KEYWORDS,
   NO_CHANGELOG,
   ERRORS,
   REGEXES,

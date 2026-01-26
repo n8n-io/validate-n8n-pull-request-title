@@ -1,5 +1,10 @@
 const { validatePrTitle: validate } = require("./validatePrTitle");
-const { ERRORS, NO_CHANGELOG, SCOPES } = require("./constants");
+const {
+  ERRORS,
+  NO_CHANGELOG,
+  SCOPES,
+  BLOCKED_KEYWORDS,
+} = require("./constants");
 const displayNamesModule = require("./getAllNodesDisplayNames");
 const { TYPES } = require("./constants");
 const {
@@ -45,6 +50,14 @@ describe("schema", () => {
       expect(issues).toHaveLength(1).toContain(ERRORS.PR_NUMBER_PRESENT);
     });
   });
+
+  test.each(BLOCKED_KEYWORDS)(
+    'Validation should fail for blocked keyword "%s"',
+    async (keyword) => {
+      const issues = await validate(`fix(core): Fix ${keyword} issue`);
+      expect(issues).toHaveLength(1).toContain(ERRORS.BLOCKED_KEYWORD_PRESENT);
+    },
+  );
 });
 
 describe("type", () => {
