@@ -1,6 +1,13 @@
 const { closest } = require("fastest-levenshtein");
 const { getAllNodesDisplayNames } = require("./getAllNodesDisplayNames");
-const { TYPES, SCOPES, NO_CHANGELOG, ERRORS, REGEXES } = require("./constants");
+const {
+  TYPES,
+  SCOPES,
+  BLOCKED_KEYWORDS,
+  NO_CHANGELOG,
+  ERRORS,
+  REGEXES,
+} = require("./constants");
 
 /**
  * Validate that a pull request title matches n8n's version of the Conventional Commits spec.
@@ -17,6 +24,8 @@ async function validatePrTitle(title) {
   if (containsTicketNumber(title)) return [ERRORS.TICKET_NUMBER_PRESENT];
 
   if (containsPrNumber(title)) return [ERRORS.PR_NUMBER_PRESENT];
+
+  if (containsBlockedKeyword(title)) return [ERRORS.BLOCKED_KEYWORD_PRESENT];
 
   const issues = [];
 
@@ -112,6 +121,11 @@ const startsWithLowerCase = (str) => /^[a-z]/.test(str);
 const endsWithPeriod = (str) => /\.$/.test(str);
 
 const containsTicketNumber = (str) => REGEXES.TICKET.test(str);
+
+const containsBlockedKeyword = (str) =>
+  BLOCKED_KEYWORDS.some((keyword) =>
+    new RegExp(`\\b${keyword}\\b`, "i").test(str),
+  );
 
 const doesNotUsePresentTense = (str) => {
   const verb = str.split(" ").shift();
