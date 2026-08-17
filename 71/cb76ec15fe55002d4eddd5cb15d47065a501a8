@@ -1,0 +1,23 @@
+src/constants.js
+  s_41c05bf76c9bdc::t_e5928726718c46 13
+dist/index.js.map
+  ai_agent 1
+dist/index.js
+  s_41c05bf76c9bdc::t_371ff4a509e548 29074
+---
+{
+  "schema_version": "authorship/3.0.0",
+  "git_ai_version": "1.5.2",
+  "base_commit_sha": "71cb76ec15fe55002d4eddd5cb15d47065a501a8",
+  "prompts": {},
+  "sessions": {
+    "s_41c05bf76c9bdc": {
+      "agent_id": {
+        "tool": "claude",
+        "id": "c5fe4c1b-2e5f-4f04-9c04-4d8ee58ac1a6",
+        "model": "claude-sonnet-5"
+      },
+      "human_author": "Tomi Turtiainen <10324676+tomi@users.noreply.github.com>"
+    }
+  }
+}
